@@ -3,7 +3,6 @@ const port = 6969;
 const host = 'localhost';
 const fs = require('fs').promises;
 
-
 let indexFile;
 
 const requestListener = function (req, res) {
