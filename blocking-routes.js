@@ -6,7 +6,7 @@ const fs = require('fs');
 
 fs.readFile(__dirname + '/data/books.json', (err, data) => {
   if(err) throw err;
-  for(let i = 0; i < 10; i++){
+  for(let i = 0; i < 100000; i++){
     i = i + 1;
     console.log(i);
   }
