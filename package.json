@@ -3,9 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "main": "routes2.ts",
+  "types": "module",
   "scripts": {
     "test": "test",
-    "start": "nodemon routes2.ts"
+    "start": "nodemon blocking-routes.js"
   },
   "repository": {
     "type": "git",

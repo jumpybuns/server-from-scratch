@@ -24,5 +24,5 @@
     "baseUrl": "."
   },
   "exclude": ["node_modules"],
-  "include": ["./*.ts", "types/listenerTypes.ts"]
+  "include": ["./*.ts", "types/listenerTypes.ts", "post-routes.js", "blocking-routes.js"]
 }
