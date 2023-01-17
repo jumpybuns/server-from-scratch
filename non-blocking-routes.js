@@ -5,20 +5,20 @@ const authors = require('./data/authors.json');
 const fs = require('fs');
 
 const loop = () => {
+  let count;
   for(let i = 0; i < 10; i++){
-    i = i + 1;
-    console.log(i);
+    count = i + 1;
+    console.log(count);
   }
 }
 
-fs.readFile(__dirname + '/data/books.json', async (err, data) => {
-  if(err) throw err;
-  await loop;
-  console.log(books);
-})
- 
-const requestListener = (_req, res) => {
+const requestListener = (req, res) => {
   res.writeHead(200);
+  fs.readFile(__dirname + '/data/books.json', (err, data) => {
+    if(err) throw err;
+    console.log(books);
+  })
+  loop();
   res.end(JSON.stringify(books));
 }
 
