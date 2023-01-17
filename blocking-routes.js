@@ -4,7 +4,7 @@ const books = require('./data/books.json');
 const authors = require('./data/authors.json');
 const fs = require('fs');
 
-fs.readFile(__dirname + '/data/books.json', async (err, data) => {
+fs.readFile(__dirname + '/data/books.json', (err, data) => {
   if(err) throw err;
   for(let i = 0; i < 10; i++){
     i = i + 1;
