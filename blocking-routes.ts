@@ -4,25 +4,21 @@ import { __String } from 'typescript';
 const port = 6969;
 
 
-const loop = () => {
-  let count;
-  for(let i = 0; i < 100; i++){
-    count = i + 1;
-    console.log(count);
-  }
-}
+// const loop = () => {
+//   let count;
+//   for(let i = 0; i < 100; i++){
+//     count = i + 1;
+//     console.log(count);
+//   }
+// }
 const requestListener = (_req: IncomingMessage, res: ServerResponse) => {
-  res.setHeader("Content-Type", "application/json");
-  res.writeHead(200);
-  let d = fs.readFile(__dirname + '/data/books.json', {'encoding': 'utf-8'}, (err: any, data:any ) => {
-    try {
+  fs.promises.readFile(__dirname + '/data/books.json', {'encoding': 'utf-8'})
+    .then((data: any) => {
       res.end(JSON.stringify(data));
-    } catch(err){
+    })
+    .catch((err: any) => {
       console.error(err);
-    }
-  })
-  res.end(d);
-  loop();
+    })
 }
 
 const server = http.createServer(requestListener);
