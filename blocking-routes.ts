@@ -1,31 +1,22 @@
-import http, { IncomingMessage, ServerResponse} from "http";
-import fs from 'fs';
-import { __String } from 'typescript';
+import express, { Request, Response } from 'express';
+import authors from './data/authors.json';
 const port = 6969;
 
 
+const app = express();
+
 const loop = () => {
-  let count;
-  for(let i = 0; i < 100; i++){
-    count = i + 1;
-    console.log(count);
+  for(let i = 0; i < 50; i++) {
+    console.log('CONSOLE', i);
   }
 }
 
-const requestListener = async (_req: IncomingMessage, res: ServerResponse) => {
-  await fs.promises.readFile(__dirname + '/data/books.json', {'encoding': 'utf-8'})
-    .then((data: string) => {
-      res.end(JSON.stringify(data));
-      console.log('BLOCKING');
-    })
-    .catch((err: any) => {
-      console.error(err);
-    });
+app.get('/authors', (_req: Request, res: Response) => {
   loop();
-}
+  res.send(JSON.stringify(authors));
+})
 
-const server = http.createServer(requestListener);
 
-server.listen(port, () => {
+app.listen(port, () => {
   console.log(`Big Brother is watching on port ${port}`);
 })

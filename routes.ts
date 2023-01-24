@@ -1,28 +1,44 @@
-import http from "http";
-const port = 6969;
-const host = 'localhost';
-import books from './data/books.json';
-import authors from'./data/authors.json';
- 
-const requestListener = (_req: any, res: any) => {
-  res.setHeader("Content-Type", "application/json");
-  switch(_req.url){
-    case "/books":
-      res.writeHead(200);
-      res.end(JSON.stringify(books));
-      break
-    case "/authors":
-      res.writeHead(200);
-      res.end(JSON.stringify(authors));
-      break
-    default:
-      res.writeHead(404);
-      res.end(JSON.stringify({ error: 'not found' }));
+
+function longRun(cb: any) {
+  let x = true;
+  let count = 0;
+  while(x) {
+    if (count === 500000000) {
+      x = false;
+    }
+    count++;
   }
-};
+  cb("finished long run")
+}
 
-const server = http.createServer(requestListener);
 
-server.listen(port, host, () => {
-  console.log(`this server is on http://${host}:${port}`);
-});
+function execute() {
+  console.log("beginning execution block")
+
+
+  // we wrap a sync task in a promise
+  new Promise((resolve, _reject) => longRun(resolve))
+      .then((msg) => console.log(msg)
+  )
+
+  longRun(() => console.log("finished long run without promise wrapper"))
+
+
+  // we wrap an async task in a promise
+  new Promise((resolve, _reject) => setTimeout(() => resolve("finished timeout"), 4000)).then((msg) => {
+    console.log(msg)
+  })
+  
+  console.log("completed execution block")
+}
+
+
+// what will the order of printed logs be?
+// beginning execution block
+// finished long run without promise wrapper
+// completed execution block
+// finished long run
+// finished timeout
+
+
+execute()

@@ -6,7 +6,7 @@
   "types": "module",
   "scripts": {
     "test": "test",
-    "start": "nodemon blocking-routes.ts"
+    "start": "nodemon routes.ts"
   },
   "repository": {
     "type": "git",
@@ -19,6 +19,8 @@
   },
   "homepage": "https://github.com/jumpybuns/server-from-scratch#readme",
   "dependencies": {
+    "@types/express": "^4.17.16",
+    "express": "^4.18.2",
     "nodemon": "^2.0.20",
     "ts-node": "^10.9.1",
     "typescript": "^4.9.4"

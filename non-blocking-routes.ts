@@ -1,29 +1,14 @@
-import http, { IncomingMessage, ServerResponse} from "http";
-import fs from 'fs';
+import express, { Request, Response } from 'express';
 const port = 6969;
+import books from './data/books.json';
 
-// const loop = () => {
-//   let count;
-//   for(let i = 0; i < 10; i++){
-//     count = i + 1;
-//     console.log(count);
-//   }
-// }
+const app = express();
 
-const requestListener = (_req: IncomingMessage, res: ServerResponse) => {
-  res.setHeader("Content-Type", "application/json");
-  res.writeHead(200);
-  const d = fs.readFile(__dirname + '/data/authors.json', {'encoding': 'utf-8'},  (err, data) => {
-    if(!data) throw err;
-    else res.end(JSON.stringify(data));
-    console.log('NON-BLOCKING');
-  });
-  res.end(d);
-};
+app.get('/', (_req:Request, res:Response) => {
+  console.log('CONSOLE');
+  res.send(JSON.stringify(books));
+});
 
-
-const server = http.createServer(requestListener);
-
-server.listen(port, () => {
+app.listen(port, () => {
   console.log(`Big Brother is watching on port ${port}`);
 })
