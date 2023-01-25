@@ -6,7 +6,7 @@
   "types": "module",
   "scripts": {
     "test": "test",
-    "start": "nodemon routes.ts"
+    "start": "nodemon non-blocking-routes.ts"
   },
   "repository": {
     "type": "git",
