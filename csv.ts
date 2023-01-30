@@ -1,8 +1,8 @@
-const http = require("http");
+import http from 'http';
 const port = 6969;
 const host = 'localhost';
  
-const requestListener = (req, res) => {
+const requestListener = (_req: any, res: any) => {
   res.setHeader("Content-Type", "text/csv") ;
   res.setHeader("Content-Disposition", "attachment; filename=oceanpals.csv") ;
   res.writeHead(200);

@@ -1,8 +1,9 @@
-const http = require("http");
+import http from 'http';
 const port = 6969;
 const host = 'localhost';
  
-const requestListener = (req, res) => {
+
+const requestListener = (_req: any, res: any) => {
   res.writeHead(200);
   res.end("Its amazing what you can make from scratch these days.");
 };

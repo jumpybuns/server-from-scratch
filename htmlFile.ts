@@ -6,7 +6,7 @@ const fs = require('fs').promises;
 
 let indexFile;
 
-const requestListener = function (req, res) {
+const requestListener = function (_req: any, res: any) {
   res.setHeader("Content-Type", "text/html");
   res.writeHead(200);
   res.end(indexFile);
